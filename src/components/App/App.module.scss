@@ -1,0 +1,20 @@
+@use '../../variables' as vars;
+
+body {
+  margin: 0;
+  font-family: vars.$family;
+  color: vars.$colors-text;
+  font-weight: vars.$fw-light;
+  background-color: vars.$colors-bg;
+}
+
+.pages {
+  padding: 0.75rem 2rem;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1240px;
+
+  @media (min-width: 767px) {
+    padding: 2rem;
+  }
+}

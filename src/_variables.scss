@@ -1,0 +1,23 @@
+/* Typography */
+$family: 'Nunito Sans', sans-serif;
+$fs-sm: 14px;
+$fs-md: 16px;
+$fw-light: 300;
+$fw-normal: 600;
+$fw-bold: 800;
+
+/* Other */
+$radii: 0.5rem;
+$transition: all 0.8s ease-in;
+$op-transition: opacity 0.4s ease-in;
+$opacity: 0.7;
+
+$colors-text: hsl(200, 15%, 8%);
+$colors-bg: hsl(0, 0%, 98%);
+$colors-ui-base: hsl(0, 0%, 100%);
+$colors-ui-alt: hsl(0, 0%, 52%);
+$colors-ui-button: rgba(124, 124, 124, 0.3);
+
+$colors-red: #e92d59;
+
+$shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
