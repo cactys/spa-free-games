@@ -8,6 +8,7 @@ $fw-bold: 800;
 
 /* Other */
 $radii: 0.5rem;
+$radii-button: 50%;
 $transition: all 0.8s ease-in;
 $op-transition: opacity 0.4s ease-in;
 $opacity: 0.7;
@@ -16,7 +17,8 @@ $colors-text: hsl(200, 15%, 8%);
 $colors-bg: hsl(0, 0%, 98%);
 $colors-ui-base: hsl(0, 0%, 100%);
 $colors-ui-alt: hsl(0, 0%, 52%);
-$colors-ui-button: rgba(124, 124, 124, 0.3);
+$colors-ui-button: rgba(124, 124, 124, 0.6);
+$colors-ui-button-alt: rgba(124, 124, 124, 0.3);
 
 $colors-red: #e92d59;
 

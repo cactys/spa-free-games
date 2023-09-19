@@ -21,6 +21,7 @@ export interface ICardProps {
   developer: string;
   genre: string;
   platform: string;
+  id: number;
 }
 
 export interface IInitialState {

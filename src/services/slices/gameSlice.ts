@@ -1,7 +1,7 @@
 import { createSlice, isRejectedWithValue } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { fetchGames } from '../../utils/fetchGames';
-import { IAction, IInitialState } from '../interfaces';
+import { IAction, IGame, IInitialState } from '../interfaces';
 
 const initialState: IInitialState = {
   games: [],
@@ -12,28 +12,34 @@ const initialState: IInitialState = {
 export const gameSlice = createSlice({
   name: 'games',
   initialState,
-  reducers: {},
+  reducers: {
+    removeCard(state, action: PayloadAction<IGame>) {
+      state.games ===
+        state.games.filter((game) => game.id !== action.payload.id);
+    },
+  },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchGames.pending, (state: IInitialState) => {
+      .addCase(fetchGames.pending, (state) => {
         state.status = 'loading';
         state.error = null;
       })
       .addCase(
         fetchGames.fulfilled,
-        (state: IInitialState, action: IAction) => {
+        (state, action: IAction) => {
           state.status = 'resolved';
           state.games = action.payload;
-        }
+        },
       )
       .addMatcher(
         isRejectedWithValue(fetchGames),
-        (state: IInitialState, action: PayloadAction<unknown>) => {
+        (state, action: PayloadAction<unknown>) => {
           state.status = 'rejected';
           state.error = (action.payload as Error).message;
-        }
+        },
       );
   },
 });
 
+export const { removeCard } = gameSlice.actions;
 export default gameSlice.reducer;

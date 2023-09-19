@@ -9,21 +9,21 @@ const Cards = () => {
 
   return (
     <section className={styles.wrapper}>
-      {games && games.map(game => (
-        <Card
-          key={game.id}
-          title={game.title}
-          image={game.thumbnail}
-          description={game.short_description}
-          developer={game.developer}
-          genre={game.genre}
-          platform={game.platform}
-        />
-      ))
-      }
+      {games &&
+        games.map((game) => (
+          <Card
+            key={game.id}
+            title={game.title}
+            image={game.thumbnail}
+            description={game.short_description}
+            developer={game.developer}
+            genre={game.genre}
+            platform={game.platform}
+            id={game.id}
+          />
+        ))}
     </section>
-  )
-}
+  );
+};
 
-export default Cards
-
+export default Cards;
