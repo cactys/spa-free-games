@@ -1,9 +1,15 @@
 import styles from './HeartIcon.module.scss';
 import { BsBookmarkHeart } from 'react-icons/bs';
 
-const HeartIcon = ({ isLiked }: { isLiked: boolean }) => {
+const HeartIcon = ({
+  isLiked,
+  onClick,
+}: {
+  isLiked: boolean;
+  onClick: VoidFunction;
+}) => {
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} onClick={onClick}>
       {isLiked ? (
         <div className={styles.wrapper__active}>
           <BsBookmarkHeart size={16} />

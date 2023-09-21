@@ -1,7 +1,7 @@
 import { createSlice, isRejectedWithValue } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { fetchGames } from '../../utils/fetchGames';
-import { IAction, IGame, IInitialState } from '../interfaces';
+import { IAction, IActionPayload, IInitialState } from '../interfaces';
 
 const initialState: IInitialState = {
   games: [],
@@ -13,9 +13,14 @@ export const gameSlice = createSlice({
   name: 'games',
   initialState,
   reducers: {
-    removeCard(state, action: PayloadAction<IGame>) {
-      state.games ===
-        state.games.filter((game) => game.id !== action.payload.id);
+    removeCard(state, action: PayloadAction<IActionPayload>) {
+      state.games = state.games.filter((game) => game.id !== action.payload.id);
+    },
+    toggleLikes(state, action: PayloadAction<IActionPayload>) {
+      const toggleCard = state.games.find(
+        (game) => game.id === action.payload.id,
+      );
+      if (toggleCard) toggleCard.likes = !toggleCard.likes;
     },
   },
   extraReducers: (builder) => {
@@ -24,13 +29,10 @@ export const gameSlice = createSlice({
         state.status = 'loading';
         state.error = null;
       })
-      .addCase(
-        fetchGames.fulfilled,
-        (state, action: IAction) => {
-          state.status = 'resolved';
-          state.games = action.payload;
-        },
-      )
+      .addCase(fetchGames.fulfilled, (state, action: IAction) => {
+        state.status = 'resolved';
+        state.games = action.payload;
+      })
       .addMatcher(
         isRejectedWithValue(fetchGames),
         (state, action: PayloadAction<unknown>) => {
@@ -41,5 +43,5 @@ export const gameSlice = createSlice({
   },
 });
 
-export const { removeCard } = gameSlice.actions;
+export const { removeCard, toggleLikes } = gameSlice.actions;
 export default gameSlice.reducer;

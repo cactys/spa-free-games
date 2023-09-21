@@ -12,6 +12,7 @@ export interface IGame {
   short_description: string;
   thumbnail: string;
   title: string;
+  likes: boolean;
 }
 
 export interface ICardProps {
@@ -22,6 +23,7 @@ export interface ICardProps {
   genre: string;
   platform: string;
   id: number;
+  likes: boolean;
 }
 
 export interface IInitialState {
@@ -32,6 +34,11 @@ export interface IInitialState {
 
 export interface IAction extends Action {
   payload: IGame[];
+}
+
+export interface IActionPayload {
+  id?: number;
+  likes?: boolean;
 }
 
 export interface ISelector {

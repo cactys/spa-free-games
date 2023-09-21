@@ -1,0 +1,19 @@
+@use '../../variables' as vars;
+
+.wrapper {
+  padding: 0;
+  display: flex;
+  width: 28px;
+  height: 28px;
+  justify-content: center;
+  align-items: center;
+  border-radius: vars.$radii-button;
+  background-color: vars.$colors-ui-button;
+  box-shadow: vars.$shadow;
+  cursor: pointer;
+  transition: vars.$op-transition;
+
+  &:hover {
+    opacity: vars.$opacity;
+  }
+}

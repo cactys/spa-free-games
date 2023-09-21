@@ -6,7 +6,7 @@ import styles from './Card.module.scss';
 import TrashIcon from '../../UI/TrashIcon/TrashIcon';
 import HeartIcon from '../../UI/HeartIcon/HeartIcon';
 import { useDispatch } from '../../services/hooks';
-import { removeCard } from '../../services/slices/gameSlice';
+import { removeCard, toggleLikes } from '../../services/slices/gameSlice';
 
 const Card = ({
   title,
@@ -16,23 +16,28 @@ const Card = ({
   genre,
   platform,
   id,
+  likes = false,
 }: ICardProps) => {
   const dispatch = useDispatch();
 
-  const handleRemoveCard = (id: number) => {
+  const handleRemoveCard = () => {
     dispatch(removeCard({ id }));
+  };
+
+  const handleLikesCard = () => {
+    dispatch(toggleLikes({ likes, id }));
   };
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.button}>
-        <TrashIcon removeCard={handleRemoveCard} id={id} />
+      <div className={styles.button} onClick={handleRemoveCard}>
+        <TrashIcon />
       </div>
       <img className={styles.image} src={image} alt={title} />
       <div className={styles.card}>
         <div className={styles.card__header}>
           <h2 className={styles.card__title}>{title}</h2>
-          <HeartIcon isLiked={false} />
+          <HeartIcon isLiked={likes} onClick={handleLikesCard} />
         </div>
         <div className={styles.card__list}>
           <p className={styles.card__item}>
