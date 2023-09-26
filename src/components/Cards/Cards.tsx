@@ -4,6 +4,7 @@ import { useSelector } from '../../services/hooks';
 import { ISelector } from '../../services/interfaces';
 import ChevronsUpButton from '../../UI/ChevronsUpButton/ChevronsUpButton';
 import FilterCheckbox from '../../UI/FilterCheckbox/FilterCheckbox';
+import { filter } from '../../utils/utils';
 
 import Card from '../Card/Card';
 import styles from './Cards.module.scss';
@@ -14,10 +15,16 @@ const Cards = () => {
 
   const [visibleCard, setVisibleCard] = useState(12);
   const [showScrollButton, setShowScrollButton] = useState(false);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [filteredCards, setFilteredCards] = useState(games);
   const [filterCheckbox, setFilterCheckbox] = useState(false);
 
-  const handleLikesFilter = () => {};
+  const handleLikesFilter = () => {
+    setFilterCheckbox(!filterCheckbox);
+
+    setFilteredCards(filter(games, filterCheckbox));
+  };
+
+  console.log(filteredCards);
 
   const handleScroll = () => {
     const scrolled = window.scrollY;

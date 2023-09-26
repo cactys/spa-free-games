@@ -1,3 +1,5 @@
+import styles from './FilterCheckbox.module.scss';
+
 const FilterCheckbox = ({
   title,
   type,
@@ -12,15 +14,16 @@ const FilterCheckbox = ({
   handleLikesFilter: VoidFunction;
 }) => {
   return (
-    <label>
+    <label className={styles.wrapper}>
       <input
         type={type}
         id={id}
-        checked={filterCheckbox ? true : false}
+        checked={filterCheckbox ? false : true}
         onChange={handleLikesFilter}
+        className={styles.checkbox}
       />
-      <span />
-      <span>{title}</span>
+      <span className={styles.bubble} />
+      <span className={styles.title}>{title}</span>
     </label>
   );
 };
