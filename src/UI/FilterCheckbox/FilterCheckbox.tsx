@@ -18,7 +18,7 @@ const FilterCheckbox = ({
       <input
         type={type}
         id={id}
-        checked={filterCheckbox ? false : true}
+        checked={filterCheckbox ? true : false}
         onChange={handleLikesFilter}
         className={styles.checkbox}
       />

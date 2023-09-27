@@ -24,8 +24,6 @@ const Cards = () => {
     setFilteredCards(filter(games, filterCheckbox));
   };
 
-  console.log(filteredCards);
-
   const handleScroll = () => {
     const scrolled = window.scrollY;
     const viewportHeight = window.innerHeight;
@@ -56,7 +54,11 @@ const Cards = () => {
     };
   }, []);
 
-  const visibleData = games.slice(0, visibleCard);
+  useEffect(() => {
+    setFilteredCards(filter(games, filterCheckbox));
+  }, [filterCheckbox, games]);
+
+  const visibleData = filteredCards.slice(0, visibleCard);
 
   return (
     <section className={styles.wrapper}>
@@ -75,7 +77,7 @@ const Cards = () => {
           <CSSTransition
             nodeRef={nodeRef}
             in={showScrollButton}
-            timeout={300}
+            timeout={500}
             classNames={{
               enterDone: `${styles.option}`,
               enter: `${styles.option__enter}`,
